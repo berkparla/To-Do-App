@@ -37,13 +37,23 @@ function dropTask(event) {
     let text = event.dataTransfer.getData("text/plain");
     let li = document.createElement("li");
     li.innerHTML = text;
-    inProgressContainer.appendChild(li);
+    event.target.appendChild(li);
+    li.draggable = true;
     saveData();
 }
 
+
+
 listContainer.addEventListener("dragstart", dragStart);
+listContainer.addEventListener("dragover", allowDrop);
+listContainer.addEventListener("drop", dropTask);
 inProgressContainer.addEventListener("dragover", allowDrop);
 inProgressContainer.addEventListener("drop", dropTask);
+inProgressContainer.addEventListener("dragstart", dragStart);
+doneList.addEventListener("dragover", allowDrop);
+doneList.addEventListener("drop", dropTask);
+doneList.addEventListener("dragstart", dragStart);
+
 
 
 
@@ -58,11 +68,37 @@ listContainer.addEventListener("click", function(e){
     }
 }, false);
 
+inProgressContainer.addEventListener("click", function(e){
+    if (e.target.tagName === "LI"){
+        e.target.classList.toggle("checked");
+        saveData();
+    }
+    else if(e.target.tagName === "SPAN"){
+        e.target.parentElement.remove();
+        saveData();
+    }
+}, false);
+
+doneList.addEventListener("click", function(e){
+    if (e.target.tagName === "LI"){
+        e.target.classList.toggle("checked");
+        saveData();
+    }
+    else if(e.target.tagName === "SPAN"){
+        e.target.parentElement.remove();
+        saveData();
+    }
+}, false);
+
 function saveData(){
-    localStorage.setItem("data", listContainer.innerHTML);
+    localStorage.setItem("todoData", listContainer.innerHTML);
+    localStorage.setItem("inProgressData", inProgressContainer.innerHTML);
+    localStorage.setItem("doneData", doneList.innerHTML);
 }
 
 function showTask(){
-    listContainer.innerHTML = localStorage.getItem("data");
+    listContainer.innerHTML = localStorage.getItem("todoData");
+    inProgressContainer.innerHTML = localStorage.getItem("inProgressData");
+    doneList.innerHTML = localStorage.getItem("doneData");
 }
 showTask();

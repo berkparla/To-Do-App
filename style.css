@@ -32,7 +32,6 @@
 .to-do{
     width: 100%;
     max-width: 540px;
-    background: #fff;
     margin: 100px 30px 20px;
     padding: 40px 30px 70px;
     border-radius: 50px;
@@ -69,6 +68,7 @@ input{
     background: transparent;
     padding: 10px;
     font-weight: 14px;
+    font-size: 16px;
 }
 
 button{
@@ -85,7 +85,6 @@ button{
 .in-progress{
     width: 100%;
     max-width: 540px;
-    background: #fff;
     margin: 100px 30px 20px;
     padding: 40px 30px 70px;
     border-radius: 50px;
@@ -96,7 +95,6 @@ button{
 .done{
     width: 100%;
     max-width: 540px;
-    background: #fff;
     margin: 100px 30px 20px;
     padding: 40px 30px 70px;
     border-radius: 50px;
@@ -112,7 +110,7 @@ ul li{
     cursor: pointer;
     position: relative;
 }
- ul li::before{
+/*ul li::before{
     content: '';
     position: absolute;
     height: 28px;
@@ -123,7 +121,7 @@ ul li{
     background-position: center;
     top: 12px;
     left: 8px;
- }
+ }*/
 
  ul li.checked{
     color: #555;
