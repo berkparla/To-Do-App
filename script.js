@@ -35,12 +35,32 @@ function dropTask(event) {
     console.log("dropTask event triggered");
     event.preventDefault();
     let text = event.dataTransfer.getData("text/plain");
-    let li = document.createElement("li");
-    li.innerHTML = text;
-    event.target.appendChild(li);
-    li.draggable = true;
-    saveData();
+
+    if(!taskExistsInContainer(text, event.target)) {
+        let li = document.createElement("li");
+        li.innerHTML = text;
+        event.target.appendChild(li);
+        li.draggable = true;
+        saveData();
+    }
+    else{
+        alert("Task already exists in this container.");
+        console.log("task already exists")
+    }
+    
 }
+
+function taskExistsInContainer(taskText, container) {
+    const taskElements = container.querySelectorAll("li");
+    for(let i = 0; i < taskElements.length; i++){
+        if(taskElements[i].innerHTML === taskText) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 
 
 
@@ -58,33 +78,33 @@ doneList.addEventListener("dragstart", dragStart);
 
 
 listContainer.addEventListener("click", function(e){
-    if (e.target.tagName === "LI"){
+    /*if (e.target.tagName === "LI"){
         e.target.classList.toggle("checked");
         saveData();
-    }
-    else if(e.target.tagName === "SPAN"){
+    }*/
+    if(e.target.tagName === "SPAN"){
         e.target.parentElement.remove();
         saveData();
     }
 }, false);
 
 inProgressContainer.addEventListener("click", function(e){
-    if (e.target.tagName === "LI"){
+    /*if (e.target.tagName === "LI"){
         e.target.classList.toggle("checked");
         saveData();
-    }
-    else if(e.target.tagName === "SPAN"){
+    }*/
+    if(e.target.tagName === "SPAN"){
         e.target.parentElement.remove();
         saveData();
     }
 }, false);
 
 doneList.addEventListener("click", function(e){
-    if (e.target.tagName === "LI"){
+    /*if (e.target.tagName === "LI"){
         e.target.classList.toggle("checked");
         saveData();
-    }
-    else if(e.target.tagName === "SPAN"){
+    }*/
+    if(e.target.tagName === "SPAN"){
         e.target.parentElement.remove();
         saveData();
     }
