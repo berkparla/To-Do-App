@@ -21,6 +21,12 @@ function addTask(){
     saveData();
 }
 
+inputBox.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        addTask();
+    }
+});
+
 function dragStart(event) {
     console.log("dragStart event triggered");
     event.dataTransfer.setData("text/plain", event.target.innerHTML);
@@ -60,10 +66,6 @@ function taskExistsInContainer(taskText, container) {
     return false;
 }
 
-
-
-
-
 listContainer.addEventListener("dragstart", dragStart);
 listContainer.addEventListener("dragover", allowDrop);
 listContainer.addEventListener("drop", dropTask);
@@ -75,13 +77,7 @@ doneList.addEventListener("drop", dropTask);
 doneList.addEventListener("dragstart", dragStart);
 
 
-
-
 listContainer.addEventListener("click", function(e){
-    /*if (e.target.tagName === "LI"){
-        e.target.classList.toggle("checked");
-        saveData();
-    }*/
     if(e.target.tagName === "SPAN"){
         e.target.parentElement.remove();
         saveData();
@@ -89,10 +85,6 @@ listContainer.addEventListener("click", function(e){
 }, false);
 
 inProgressContainer.addEventListener("click", function(e){
-    /*if (e.target.tagName === "LI"){
-        e.target.classList.toggle("checked");
-        saveData();
-    }*/
     if(e.target.tagName === "SPAN"){
         e.target.parentElement.remove();
         saveData();
@@ -100,10 +92,6 @@ inProgressContainer.addEventListener("click", function(e){
 }, false);
 
 doneList.addEventListener("click", function(e){
-    /*if (e.target.tagName === "LI"){
-        e.target.classList.toggle("checked");
-        saveData();
-    }*/
     if(e.target.tagName === "SPAN"){
         e.target.parentElement.remove();
         saveData();

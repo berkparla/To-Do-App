@@ -102,10 +102,14 @@ button{
     background: lightgray;
 }
 
+ul {
+    padding: 0px 0px 100px 0px;
+}
+
 ul li{
     list-style: none;
     font-size: 17px;
-    padding: 10px 0;
+    padding: 10px;
     user-select: none;
     margin-bottom: 10px;
     margin-top: 10px;
